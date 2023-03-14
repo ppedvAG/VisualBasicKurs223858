@@ -15,6 +15,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Lab02_Lotto", "Lotto\Lab02_
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M003_Enums", "Enums\M003_Enums.vbproj", "{9AB46A77-1369-4598-ABAD-9D82445B770B}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Funktionen_Prozeduren", "Funktionen_Prozeduren\Funktionen_Prozeduren.vbproj", "{B367CAB1-FC7C-4EB3-80EE-98C64103B7E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9AB46A77-1369-4598-ABAD-9D82445B770B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AB46A77-1369-4598-ABAD-9D82445B770B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AB46A77-1369-4598-ABAD-9D82445B770B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B367CAB1-FC7C-4EB3-80EE-98C64103B7E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B367CAB1-FC7C-4EB3-80EE-98C64103B7E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B367CAB1-FC7C-4EB3-80EE-98C64103B7E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B367CAB1-FC7C-4EB3-80EE-98C64103B7E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
