@@ -1,7 +1,18 @@
 ﻿'Eine KLASSE ist ein Programmteil, welches die Struktur von bestimmten Objekten definiert. Alle Objekte, welche von dieser
 ''Klasse abgeleitet werden, besitzen die selben Methoden und Eigenschaften, welche aber unterschiedlich befüllt werden können
 ''und unabhängig von anderen gleichartigen Objekten agieren.
+'Wenn eine Klassensignatur das Stichwort MUSTINHERIT beinhaltet, gilt die Klasse als abstarkt. D.h. von dieser Klasse dürfen
+''keine Objekte mehr erzeugt werden. Sie ist nur noch Vorlage für Kindklassen.
 Public MustInherit Class Fahrzeug
+
+#Region "Shared Member"
+    'SHARED Variablen und Methoden gelten unabhängig von Instanzen für die ganze Klasse.  
+    Public Shared AnzahlErstellterFahrzeuge As Integer = 0
+
+    Public Shared Sub ZeigeAnzahlErstellterFahrzeuge()
+        Console.WriteLine($"Es wurden {AnzahlErstellterFahrzeuge} Fahrzeuge gebaut.")
+    End Sub
+#End Region
 
 #Region "Felder und Properties"
     'FELDER sind die Variablen, welche jedes Objekt dieser Klasse besitzt und welche individuell befüllt werden können.
@@ -75,7 +86,7 @@ Public MustInherit Class Fahrzeug
         Me._aktGeschwindigkeit = 0
         Me._zustand = False
 
-        AnzahlFahrzeuge += 1
+        AnzahlErstellterFahrzeuge += 1
     End Sub
 
     'Alternativer überladener Konstruktor
@@ -121,6 +132,8 @@ Public MustInherit Class Fahrzeug
         End If
     End Sub
 
+    'Als OVERRIDABLE markierte Methoden erlauben erbenden Klassen diese zu überschreiben, so dass bei Methodenaufruf die Methode
+    ''der Kindklasse ausgeführt wird
     Public Overridable Function BeschreibeMich() As String
         If Me.Zustand Then
             'Mittels der Variable ME kann man innerhalb von Klassen auf die Member der jeweilgen Instanz zugreifen
@@ -130,15 +143,16 @@ Public MustInherit Class Fahrzeug
         End If
     End Function
 
+    'Überschreibung der ToString-Funktion
+    Public Overrides Function ToString() As String
+        Return Me.BeschreibeMich()
+    End Function
 
+
+    'Abstarkte Methoden (markiert mit dem MUSTOVERRIDE-Stichwort) besitzen nur eine Signatur. Die Implementierung des Körpers
+    ''erfolgt individuell in den Kindklassen, welche dazu gewungen werden. Abstrakte Methoden dürfen nur in eine abstrakten
+    ''Klasse geschrieben werden
     Public MustOverride Sub Hupen()
-
-
-
-    Public Shared AnzahlFahrzeuge As Integer = 0
-    Public Shared Sub ZeigeAnzahlFahrzeuge()
-        Console.WriteLine($"Es existieren {AnzahlFahrzeuge} Fahrzeuge.")
-    End Sub
 
 #End Region
 

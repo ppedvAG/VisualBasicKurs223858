@@ -63,17 +63,87 @@ Module Module1
 
 #End Region
 
-        Dim pkw1 As PKW = New PKW("BMW", 230, 4000, 4)
+#Region "Modul 07 Vererbung"
+        'Dim pkw1 As PKW = New PKW("BMW", 260, 28000, 5)
 
-        Console.WriteLine(pkw1.BeschreibeMich())
+        'Console.WriteLine(pkw1.BeschreibeMich())
 
-        Console.WriteLine(pkw1)
+        'Console.WriteLine(pkw1)
 
-        pkw1.Hupen()
+        ''Dim fz1 As Fahrzeug = New Fahrzeug()
 
-        Fahrzeug.ZeigeAnzahlFahrzeuge()
+        'Fahrzeug.ZeigeAnzahlErstellterFahrzeuge()
+
+        'pkw1.Hupen()
+#End Region
+
+#Region "Lab 07 Schiffs-, PKW-, Flugzeug-Klassen"
+        ''Deklaration und Initialisierung der spezifischen Fahrzeuge sowie Aufruf der BeschreibeMich()-Methoden
+        'Dim pkw1 As PKW = New PKW("BMW", 270, 27000, 5)
+        'Console.WriteLine(pkw1.BeschreibeMich())
+
+        'Dim flugzeug1 As Flugzeug = New Flugzeug("Boing", 800, 3500000, 9999)
+        'Console.WriteLine(flugzeug1.BeschreibeMich())
+
+        'Dim schiff1 As Schiff = New Schiff("Titanic", 50, 2900000, Schiff.Schiffstreibstoff.Dampf)
+        'Console.WriteLine(schiff1.BeschreibeMich())
+
+        ''Aufruf der abstarkten Methoden Hupen()
+        'pkw1.Hupen()
+        'schiff1.Hupen()
+        'flugzeug1.Hupen()
+
+        ''Ausgabe des Shared Members der Fahrzeug-Klasse
+        'Fahrzeug.ZeigeAnzahlErstellterFahrzeuge()
+#End Region
+
+        'Bsp-Objekt
+        Dim pkw1 As PKW = New PKW("BMW", 270, 27000, 5)
+
+        'Zugriff auf durch Interface definierte Property und Methode
+        Console.WriteLine(pkw1.AnzahlRäder)
+        pkw1.BaueUnfall()
+
+        'Durch den POLYMORPHISMUS kann der PKW auch als allgemeines FAHRZEUG (Vererbung) oder
+        ''IBERÄDERT-OBJEKT (Interface) betrachtet werden. Dies erlaubt einen gemeinsamen Zugriff auf Objekte,
+        ''welche eine Vererbungshierachie oder ein Interface teilen (Bsp in Arrays oder Methodenübergaben)
+
+        'PKW in Fahrzeug-Variabler
+        Dim fz1 As Fahrzeug = pkw1
+        'PKW in IBerädert-Variabler
+        Dim berädertesObjekt As IBerädert = pkw1
+        'Array von Fahrzeugen mit einem PKW und einem Schiff
+        Dim fahrzeugArray As Fahrzeug() = {pkw1, New Schiff("Titanic", 20000, 200, Schiff.Schiffstreibstoff.Dampf)}
+        'Übergabe eines PKWs an eine Methode, welche ein Fahrzeug als Übergabeparameter erwartet
+        Repariere(pkw1)
+
 
         Console.ReadKey()
     End Sub
+
+#Region "Modul 08 Methode"
+    Sub Repariere(fz1 As Fahrzeug)
+
+        'Prüfung, ob das Fahrzeug ein PKW ist
+        If TypeOf fz1 Is PKW Then
+
+            'Cast in PKW und Reperatur der Tür
+            Dim pkw1 As PKW = DirectCast(fz1, PKW)
+            pkw1.AnzahlTüren += 1
+
+        End If
+
+        'Prüfung, ob das Fahrzeug Räder hat
+        If TypeOf fz1 Is IBerädert Then
+
+            'Cast in IBerädert und Reperatur der Räder
+            DirectCast(fz1, IBerädert).AnzahlRäder += 1
+
+        End If
+
+        Console.WriteLine($"{fz1.Name} wurde repariert.")
+
+    End Sub
+#End Region
 
 End Module
