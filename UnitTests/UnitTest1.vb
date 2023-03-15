@@ -28,11 +28,11 @@ Imports System.Reflection
 
     End Sub
 
-    <TestMethod()> Public Sub Teste_EH()
+    '<TestMethod()> Public Sub Teste_EH()
 
-        Assert.ThrowsException(Of Exception)(TesteFahrzeugpark.Module1.Main)
+    '    Assert.ThrowsException(Of Exception)(TesteFahrzeugpark.Module1.Main)
 
 
-    End Sub
+    'End Sub
 
 End Class

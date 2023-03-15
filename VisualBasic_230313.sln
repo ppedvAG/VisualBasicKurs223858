@@ -29,6 +29,10 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ExceptionHandling", "Except
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "UnitTests", "UnitTests\UnitTests.vbproj", "{5874B855-ED97-4B35-89C8-92AA812F777F}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Delegates", "Delegates\Delegates.vbproj", "{649A73FF-0237-487B-916C-50A1A59622E2}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{3F898E14-4C6F-4D34-95E3-B4868F59E8CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,12 @@ Global
 		{5874B855-ED97-4B35-89C8-92AA812F777F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5874B855-ED97-4B35-89C8-92AA812F777F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5874B855-ED97-4B35-89C8-92AA812F777F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{649A73FF-0237-487B-916C-50A1A59622E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{649A73FF-0237-487B-916C-50A1A59622E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{649A73FF-0237-487B-916C-50A1A59622E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{649A73FF-0237-487B-916C-50A1A59622E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F898E14-4C6F-4D34-95E3-B4868F59E8CF}.Debug|Any CPU.ActiveCfg = Debug
+		{3F898E14-4C6F-4D34-95E3-B4868F59E8CF}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
