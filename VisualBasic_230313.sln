@@ -19,17 +19,17 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M004_Funktionen_Prozeduren"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Lab04_Taschenrechner", "Taschenrechner\Lab04_Taschenrechner.vbproj", "{B69FAA18-FE6C-4B3C-8D07-C31D67D6803A}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Fahrzeugpark", "Fahrzeugpark\Fahrzeugpark.vbproj", "{38BAE6A4-0446-41DC-B3A9-C72E039440E3}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M005-M009_Fahrzeugpark", "Fahrzeugpark\M005-M009_Fahrzeugpark.vbproj", "{38BAE6A4-0446-41DC-B3A9-C72E039440E3}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TesteFahrzeugpark", "TesteFahrzeugpark\TesteFahrzeugpark.vbproj", "{B677A4FB-C088-4E7C-B415-BA39DBB6E0B0}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M005-M009_TesteFahrzeugpark", "TesteFahrzeugpark\M005-M009_TesteFahrzeugpark.vbproj", "{B677A4FB-C088-4E7C-B415-BA39DBB6E0B0}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M006_WertVsRef", "WertVsRef\M006_WertVsRef.vbproj", "{A1AC636E-54C8-4EEE-8D49-0788FC2D114C}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ExceptionHandling", "ExceptionHandling\ExceptionHandling.vbproj", "{508CFB85-98EE-4D05-98DC-6FE11AD63BEC}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M010_ExceptionHandling", "ExceptionHandling\M010_ExceptionHandling.vbproj", "{508CFB85-98EE-4D05-98DC-6FE11AD63BEC}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "UnitTests", "UnitTests\UnitTests.vbproj", "{5874B855-ED97-4B35-89C8-92AA812F777F}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M011_UnitTests", "UnitTests\M011_UnitTests.vbproj", "{5874B855-ED97-4B35-89C8-92AA812F777F}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Delegates", "Delegates\Delegates.vbproj", "{649A73FF-0237-487B-916C-50A1A59622E2}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M012_Delegates", "Delegates\M012_Delegates.vbproj", "{649A73FF-0237-487B-916C-50A1A59622E2}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{3F898E14-4C6F-4D34-95E3-B4868F59E8CF}"
 EndProject

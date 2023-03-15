@@ -136,9 +136,9 @@
     <None Include="TesteFahrzeugpark_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fahrzeugpark\Fahrzeugpark.vbproj">
+    <ProjectReference Include="..\Fahrzeugpark\M005-M009_Fahrzeugpark.vbproj">
       <Project>{38bae6a4-0446-41dc-b3a9-c72e039440e3}</Project>
-      <Name>Fahrzeugpark</Name>
+      <Name>M005-M009_Fahrzeugpark</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

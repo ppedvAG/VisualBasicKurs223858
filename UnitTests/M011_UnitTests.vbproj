@@ -116,13 +116,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fahrzeugpark\Fahrzeugpark.vbproj">
+    <ProjectReference Include="..\Fahrzeugpark\M005-M009_Fahrzeugpark.vbproj">
       <Project>{38bae6a4-0446-41dc-b3a9-c72e039440e3}</Project>
-      <Name>Fahrzeugpark</Name>
+      <Name>M005-M009_Fahrzeugpark</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TesteFahrzeugpark\TesteFahrzeugpark.vbproj">
+    <ProjectReference Include="..\TesteFahrzeugpark\M005-M009_TesteFahrzeugpark.vbproj">
       <Project>{b677a4fb-c088-4e7c-b415-ba39dbb6e0b0}</Project>
-      <Name>TesteFahrzeugpark</Name>
+      <Name>M005-M009_TesteFahrzeugpark</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
