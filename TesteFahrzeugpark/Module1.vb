@@ -1,7 +1,7 @@
 ﻿Imports System.Xml.Schema
 Imports Fahrzeugpark
 
-Module Module1
+Public Module Module1
 
     Sub Main()
 
@@ -149,57 +149,122 @@ Module Module1
         'schiff1.Entlade()
 #End Region
 
+#Region "Modul09: Generische Listen"
 
-        Dim städteListe As List(Of String) = New List(Of String)
+        ''Deklaration und Initialisierung einer List-Variablen, welche Strings fassen kann
+        'Dim städteListe As List(Of String) = New List(Of String)
 
-        städteListe.Add("Hamburg")
-        städteListe.Add("Berlin")
-        städteListe.Add("München")
-        städteListe.Add("Köln")
+        ''Hinzufügen von Strings zu der Liste
+        'städteListe.Add("Hamburg")
+        'städteListe.Add("Berlin")
+        'städteListe.Add("München")
+        'städteListe.Add("Köln")
 
-        Console.WriteLine(städteListe.Count)
+        ''Ausgabe der Anzahl der Elemente in der Liste
+        'Console.WriteLine(städteListe.Count)
 
-        Console.WriteLine(städteListe(2))
+        ''Ausgabe des dritten Elements in der Liste
+        'Console.WriteLine(städteListe(2))
 
-        städteListe.Remove("Berlin")
-        Console.WriteLine(städteListe.Count)
-        Console.WriteLine(städteListe(2))
+        ''Löschen des Objekts 'Berlin' aus der Liste -> untere Objekte rutschen nach oben und Platz-Anzahl innerhalb der LIste wird reduziert
+        'städteListe.Remove("Berlin")
+        'Console.WriteLine(städteListe.Count)
+        'Console.WriteLine(städteListe(2))
 
-        städteListe(1) = "Magdeburg"
+        ''Neuzuweisung des zweiten Elements in der Liste
+        'städteListe(1) = "Magdeburg"
 
-        For Each stadt In städteListe
-            Console.WriteLine(stadt)
+        ''Ausgabe der Liste in einer For-Each-Schleife
+        'For Each stadt In städteListe
+        '    Console.WriteLine(stadt)
+        'Next
+
+        ''Erstellen einer Liste, welche beliebige Fahrzeuge (PKWs, Flugzeuge, Schiffe) fassen kann
+        'Dim fahrzeugListe As List(Of Fahrzeug) = New List(Of Fahrzeug)
+
+        ''Deklaration und Initialisierung von Bsp-Variablen
+        'Dim pkw1 As PKW = New PKW("BMW", 270, 27000, 5)
+        'Dim schiff1 As Schiff = New Schiff("Titanic", 50, 2900000, Schiff.Schiffstreibstoff.Dampf)
+
+        ''Hinzufügen von Elementen zur Liste
+        'fahrzeugListe.Add(pkw1)
+        'fahrzeugListe.Add(New Flugzeug("Boing", 800, 3500000, 9999))
+        'fahrzeugListe.Add(schiff1)
+
+        ''For-Schleife über die Liste
+        'For index = 0 To fahrzeugListe.Count - 1
+        '    Console.WriteLine(fahrzeugListe(index).BeschreibeMich())
+        'Next
+
+
+        ''Erstellen eines neuen Dictionaries mit Strins als Keys und Fahrzeugen als Values
+        'Dim dict As Dictionary(Of String, Fahrzeug) = New Dictionary(Of String, Fahrzeug)
+
+        ''Hinzufügen von neuen Dictionary-Einträgen
+        'dict.Add("fahren", pkw1)
+        'dict.Add("schwimmen", schiff1)
+        'dict.Add("fliegen", fahrzeugListe(1))
+
+        ''Ausgabe der BeschreibeMich()-Methode des Flugzeuges über den String-Key des Dictionaries
+        'Console.WriteLine(dict("schwimmen").BeschreibeMich())
+
+        ''ForEach-Schleife über Dictionary
+        'For Each zeile In dict
+        '    Console.WriteLine($"{zeile.Key}: {zeile.Value.Name}")
+        'Next
+#End Region
+
+#Region "Lab 09: Zufällige Fahrzeuglisten"
+        'Initialisierung der Listen und des Zufallszahlengenerators
+        Dim generator As Random = New Random()
+        Dim fzQueue As Queue(Of Fahrzeug) = New Queue(Of Fahrzeug)()
+        Dim fzStack As Stack(Of Fahrzeug) = New Stack(Of Fahrzeug)()
+        Dim fzDict As Dictionary(Of Fahrzeug, Fahrzeug) = New Dictionary(Of Fahrzeug, Fahrzeug)()
+
+        'Initialisierung einer Variablen zur Angabe der Durchläufe
+        Dim anzahlFahrzeuge As Integer = 10000
+
+        'Zufällige "Befüllung" der Listen mittels des Zufallszahlengenerators und SelectCase
+        For index = 1 To anzahlFahrzeuge
+            Select Case generator.Next(1, 4)
+                Case 1
+                    fzStack.Push(PKW.ErstelleZufälligenPKW($"_S{index}"))
+                    fzQueue.Enqueue(PKW.ErstelleZufälligenPKW($"_Q{index}"))
+                Case 2
+                    fzStack.Push(New Schiff($"Titanic_S{index}", 50, 3000000, Schiff.Schiffstreibstoff.Dampf))
+                    fzQueue.Enqueue(New Schiff($"Titanic_Q{index}", 50, 3000000, Schiff.Schiffstreibstoff.Dampf))
+                Case 3
+                    fzStack.Push(New Flugzeug($"Boing_S{index}", 800, 2900000, 9900))
+                    fzQueue.Enqueue(New Flugzeug($"Boing_Q{index}", 800, 2900000, 9900))
+            End Select
         Next
 
-
-
-        Dim fahrzeugListe As List(Of Fahrzeug) = New List(Of Fahrzeug)
-
-        Dim pkw1 As PKW = New PKW("BMW", 270, 27000, 5)
-        Dim schiff1 As Schiff = New Schiff("Titanic", 50, 2900000, Schiff.Schiffstreibstoff.Dampf)
-
-        fahrzeugListe.Add(pkw1)
-        fahrzeugListe.Add(New Flugzeug("Boing", 800, 3500000, 9999))
-        fahrzeugListe.Add(schiff1)
-
-        For index = 0 To fahrzeugListe.Count - 1
-            Console.WriteLine(fahrzeugListe(index).BeschreibeMich())
+        'Versuch, die QueueFz's mit den StackFz's zu beladen
+        For index = 1 To anzahlFahrzeuge
+            'Prüfung auf das Interface (ob beladen werden kann)
+            If TypeOf fzQueue.Peek() Is IBeladbar Then
+                'wenn ja, dann Cast ins Interface 
+                Dim beladbaresFz As IBeladbar = DirectCast(fzQueue.Peek(), IBeladbar)
+                'und Aufruf der Belade()-Funktion (mittels Peek(), da die Fz's noch benötigt werden)
+                beladbaresFz.Belade(fzStack.Peek())
+                'Hinzufügen der Fz's zum Dictionary (mittels Dequeue()/Pop(), damit beim nächsten Durchlauf andere Fz's oben sind)
+                fzDict.Add(fzQueue.Dequeue(), fzStack.Pop())
+            Else
+                'wenn nein, dann werden die Fz's vor dem nächsten Durchlauf rausgeschmissen
+                fzQueue.Dequeue()
+                fzStack.Pop()
+            End If
         Next
 
+        'Programmpause
+        Console.ReadKey()
+        Console.WriteLine("-----LADELISTE----")
 
-        Dim dict As Dictionary(Of String, Fahrzeug) = New Dictionary(Of String, Fahrzeug)
-
-        dict.Add("fahren", pkw1)
-        dict.Add("schwimmen", schiff1)
-        dict.Add("fliegen", fahrzeugListe(1))
-
-        Console.WriteLine(dict("schwimmen").BeschreibeMich())
-
-        For Each zeile In dict
-
-            Console.WriteLine($"{zeile.Key}: {zeile.Value.Name}")
-
+        'Ausgabe des Dictionaries
+        For Each item In fzDict
+            Console.WriteLine($"{item.Key.Name} hat {item.Value.Name} geladen.")
         Next
+#End Region
 
         Console.ReadKey()
     End Sub

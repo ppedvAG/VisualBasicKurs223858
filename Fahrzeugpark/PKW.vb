@@ -57,4 +57,22 @@
         AnzahlTüren -= 1
         Console.WriteLine("Du hast einen Baum übersehen.")
     End Sub
+
+    'Funktion zur zufälligen Erstellung eines PKWs
+    Private Shared generator As Random = New Random
+    Public Shared Function ErstelleZufälligenPKW(nameSuffix As String) As PKW
+        Dim name As String
+        Select Case generator.Next(0, 4)
+            Case 0
+                name = "Audi"
+            Case 1
+                name = "Mercedes"
+            Case 2
+                name = "BMW"
+            Case Else
+                name = "VW"
+        End Select
+        name = name + nameSuffix
+        Return New PKW(name, generator.Next(15, 31) * 10, generator.Next(2, 21) * 1000, generator.Next(3, 6))
+    End Function
 End Class
