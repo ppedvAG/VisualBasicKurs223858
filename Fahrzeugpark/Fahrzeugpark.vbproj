@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Fahrzeug.vb" />
     <Compile Include="Flugzeug.vb" />
+    <Compile Include="IBeladbar.vb" />
     <Compile Include="IBerädert.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

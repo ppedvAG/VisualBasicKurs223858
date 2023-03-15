@@ -1,4 +1,5 @@
-﻿Imports Fahrzeugpark
+﻿Imports System.Xml.Schema
+Imports Fahrzeugpark
 
 Module Module1
 
@@ -97,26 +98,108 @@ Module Module1
         'Fahrzeug.ZeigeAnzahlErstellterFahrzeuge()
 #End Region
 
-        'Bsp-Objekt
-        Dim pkw1 As PKW = New PKW("BMW", 270, 27000, 5)
+#Region "Modul 08: Interfaces und Polymorphismus"
+        ''Bsp-Objekt
+        'Dim pkw1 As PKW = New PKW("BMW", 270, 27000, 5)
 
-        'Zugriff auf durch Interface definierte Property und Methode
-        Console.WriteLine(pkw1.AnzahlRäder)
-        pkw1.BaueUnfall()
+        ''Zugriff auf durch Interface definierte Property und Methode
+        'Console.WriteLine(pkw1.AnzahlRäder)
+        'pkw1.BaueUnfall()
 
-        'Durch den POLYMORPHISMUS kann der PKW auch als allgemeines FAHRZEUG (Vererbung) oder
+        ''Durch den POLYMORPHISMUS kann der PKW auch als allgemeines FAHRZEUG (Vererbung) oder
         ''IBERÄDERT-OBJEKT (Interface) betrachtet werden. Dies erlaubt einen gemeinsamen Zugriff auf Objekte,
         ''welche eine Vererbungshierachie oder ein Interface teilen (Bsp in Arrays oder Methodenübergaben)
 
-        'PKW in Fahrzeug-Variabler
-        Dim fz1 As Fahrzeug = pkw1
-        'PKW in IBerädert-Variabler
-        Dim berädertesObjekt As IBerädert = pkw1
-        'Array von Fahrzeugen mit einem PKW und einem Schiff
-        Dim fahrzeugArray As Fahrzeug() = {pkw1, New Schiff("Titanic", 20000, 200, Schiff.Schiffstreibstoff.Dampf)}
-        'Übergabe eines PKWs an eine Methode, welche ein Fahrzeug als Übergabeparameter erwartet
-        Repariere(pkw1)
+        ''PKW in Fahrzeug-Variabler
+        'Dim fz1 As Fahrzeug = pkw1
+        ''PKW in IBerädert-Variabler
+        'Dim berädertesObjekt As IBerädert = pkw1
+        ''Array von Fahrzeugen mit einem PKW und einem Schiff
+        'Dim fahrzeugArray As Fahrzeug() = {pkw1, New Schiff("Titanic", 20000, 200, Schiff.Schiffstreibstoff.Dampf)}
+        ''Übergabe eines PKWs an eine Methode, welche ein Fahrzeug als Übergabeparameter erwartet
+        'Repariere(pkw1)
+#End Region
 
+#Region "Lab08: IBeladbar"
+        ''Bsp-Objekte
+        'Dim pkw1 As PKW = New PKW("BMW", 270, 27000, 5)
+        'Dim flugzeug1 As Flugzeug = New Flugzeug("Boing", 800, 3500000, 9999)
+        'Dim schiff1 As Schiff = New Schiff("Titanic", 50, 2900000, Schiff.Schiffstreibstoff.Dampf)
+
+        ''Aufruf der BeladeFahrzeuge()-Methode mit verschiedenenen Objekten
+        'BeladeFahrzeug(schiff1, schiff1)
+        'Console.WriteLine()
+
+        'BeladeFahrzeug(pkw1, flugzeug1)
+        'Console.WriteLine()
+
+        'BeladeFahrzeug(pkw1, schiff1)
+        'Console.WriteLine()
+
+        'BeladeFahrzeug(schiff1, flugzeug1)
+        'Console.WriteLine()
+
+        ''Ausgabe der BeschreibeMich()-Funktion des beladenenen Schiffes
+        'Console.WriteLine(schiff1.BeschreibeMich())
+        'Console.WriteLine()
+
+        'schiff1.Entlade()
+        'Console.WriteLine()
+
+        'schiff1.Entlade()
+#End Region
+
+
+        Dim städteListe As List(Of String) = New List(Of String)
+
+        städteListe.Add("Hamburg")
+        städteListe.Add("Berlin")
+        städteListe.Add("München")
+        städteListe.Add("Köln")
+
+        Console.WriteLine(städteListe.Count)
+
+        Console.WriteLine(städteListe(2))
+
+        städteListe.Remove("Berlin")
+        Console.WriteLine(städteListe.Count)
+        Console.WriteLine(städteListe(2))
+
+        städteListe(1) = "Magdeburg"
+
+        For Each stadt In städteListe
+            Console.WriteLine(stadt)
+        Next
+
+
+
+        Dim fahrzeugListe As List(Of Fahrzeug) = New List(Of Fahrzeug)
+
+        Dim pkw1 As PKW = New PKW("BMW", 270, 27000, 5)
+        Dim schiff1 As Schiff = New Schiff("Titanic", 50, 2900000, Schiff.Schiffstreibstoff.Dampf)
+
+        fahrzeugListe.Add(pkw1)
+        fahrzeugListe.Add(New Flugzeug("Boing", 800, 3500000, 9999))
+        fahrzeugListe.Add(schiff1)
+
+        For index = 0 To fahrzeugListe.Count - 1
+            Console.WriteLine(fahrzeugListe(index).BeschreibeMich())
+        Next
+
+
+        Dim dict As Dictionary(Of String, Fahrzeug) = New Dictionary(Of String, Fahrzeug)
+
+        dict.Add("fahren", pkw1)
+        dict.Add("schwimmen", schiff1)
+        dict.Add("fliegen", fahrzeugListe(1))
+
+        Console.WriteLine(dict("schwimmen").BeschreibeMich())
+
+        For Each zeile In dict
+
+            Console.WriteLine($"{zeile.Key}: {zeile.Value.Name}")
+
+        Next
 
         Console.ReadKey()
     End Sub
@@ -143,6 +226,23 @@ Module Module1
 
         Console.WriteLine($"{fz1.Name} wurde repariert.")
 
+    End Sub
+#End Region
+
+#Region "Lab 08 Methode"
+    Public Sub BeladeFahrzeug(fz1 As Fahrzeug, fz2 As Fahrzeug)
+        'Überprüfung, ob die fz's das Interface implementiert haben (dh. ob sie eine Ladung aufnehmen können)
+        If TypeOf fz1 Is IBeladbar Then
+            'Wenn ja, dann Cast in temporäre IBeladbar-Variable
+            Dim beladbaresO As IBeladbar = DirectCast(fz1, IBeladbar)
+            'und Aufruf der Belade()-Funktion mit Übergabe des anderen Fahrzeugs
+            beladbaresO.Belade(fz2)
+        ElseIf TypeOf fz2 Is IBeladbar Then
+            'Alternative Schreibweise ohne temporäre Variable
+            DirectCast(fz2, IBeladbar).Belade(fz1)
+        Else
+            Console.WriteLine("Kein Fahrzeug hat einen Laderaum, der beladen werden konnte.")
+        End If
     End Sub
 #End Region
 
