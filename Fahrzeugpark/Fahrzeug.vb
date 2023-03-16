@@ -145,7 +145,7 @@ Public MustInherit Class Fahrzeug
 
     'Überschreibung der ToString-Funktion
     Public Overrides Function ToString() As String
-        Return Me.BeschreibeMich()
+        Return Me.Name
     End Function
 
 
