@@ -37,7 +37,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M013_WinForms", "WinForms\M
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Lab13_ButtonMovement", "ButtonMovement\Lab13_ButtonMovement.vbproj", "{00349D67-95CD-4E87-A1F3-4CDF04C2AC8B}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Dateizugriff", "Dateizugriff\Dateizugriff.vbproj", "{C1A1DB67-4956-4425-BC5E-DC38A6A1A3C1}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "M14_Dateizugriff", "Dateizugriff\M14_Dateizugriff.vbproj", "{C1A1DB67-4956-4425-BC5E-DC38A6A1A3C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -70,7 +70,6 @@ Module Module1
         ''Übergabe der anonymen Methode in KurzSchreibweise
         gefundenesFz = fahrzeugListe.Find(Function(fz) fz.MaxGeschwindigkeit > 300)
 
-
         'Ausgabe des Ergebnisses
         Console.WriteLine(gefundenesFz.BeschreibeMich())
 

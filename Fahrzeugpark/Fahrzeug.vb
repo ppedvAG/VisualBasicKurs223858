@@ -154,6 +154,17 @@ Public MustInherit Class Fahrzeug
     ''Klasse geschrieben werden
     Public MustOverride Sub Hupen()
 
+    'Operatoren müssen für die einzelnen Klassen definiert werden
+    Public Shared Operator =(fz1 As Fahrzeug, fz2 As Fahrzeug)
+        Return fz1.Name = fz2.Name
+    End Operator
+
+    Public Shared Operator <>(fz1 As Fahrzeug, fz2 As Fahrzeug)
+        Return fz1.Name <> fz2.Name
+    End Operator
+
+
+
 #End Region
 
 End Class

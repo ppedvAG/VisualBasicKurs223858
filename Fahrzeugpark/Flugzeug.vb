@@ -1,7 +1,7 @@
 ﻿'vgl Schiff
 Public Class Flugzeug
     Inherits Fahrzeug
-    Implements IBerädert
+    Implements IBerädert, IEnumerable
 
     Private _maxFlughöhe As Integer
     Public Property MaxFlughöhe() As Integer
@@ -28,6 +28,10 @@ Public Class Flugzeug
         MyBase.New(name, preis, maxG)
         _maxFlughöhe = maxF
         _anzahlRäder = 6
+
+        Me.Passagiere = New List(Of String)
+        Passagiere.Add("Rainer Zufall")
+        Passagiere.Add("Anna Nass")
     End Sub
 
     Public Overrides Function BeschreibeMich() As String
@@ -41,4 +45,30 @@ Public Class Flugzeug
         AnzahlRäder -= 1
         Console.WriteLine("Du hast einen Vogel übersehen.")
     End Sub
+
+    'GetEnumerator()-Funktion vom IEnumerable-Interface erlaubt das Einfügen von Objekten in die ForEach-Schleife
+    Public Function GetEnumerator() As IEnumerator Implements IEnumerable.GetEnumerator
+        Return Passagiere.GetEnumerator()
+    End Function
+
+    'Bsp-Liste
+    Private _passagiere As List(Of String)
+    Public Property Passagiere() As List(Of String)
+        Get
+            Return _passagiere
+        End Get
+        Set(ByVal value As List(Of String))
+            _passagiere = value
+        End Set
+    End Property
+
+    'Indexer-(Item)-Eigenschaften erlauben den Zugriff über Indizes (wie bei Arrays und Listen)
+    Default Public Property Item(index As Integer) As String
+        Get
+            Return Me.Passagiere(index)
+        End Get
+        Set(ByVal value As String)
+            Me.Passagiere(index) = value
+        End Set
+    End Property
 End Class

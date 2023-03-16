@@ -215,56 +215,75 @@ Public Module Module1
 #End Region
 
 #Region "Lab 09: Zufällige Fahrzeuglisten"
-        'Initialisierung der Listen und des Zufallszahlengenerators
-        Dim generator As Random = New Random()
-        Dim fzQueue As Queue(Of Fahrzeug) = New Queue(Of Fahrzeug)()
-        Dim fzStack As Stack(Of Fahrzeug) = New Stack(Of Fahrzeug)()
-        Dim fzDict As Dictionary(Of Fahrzeug, Fahrzeug) = New Dictionary(Of Fahrzeug, Fahrzeug)()
+        ''Initialisierung der Listen und des Zufallszahlengenerators
+        'Dim generator As Random = New Random()
+        'Dim fzQueue As Queue(Of Fahrzeug) = New Queue(Of Fahrzeug)()
+        'Dim fzStack As Stack(Of Fahrzeug) = New Stack(Of Fahrzeug)()
+        'Dim fzDict As Dictionary(Of Fahrzeug, Fahrzeug) = New Dictionary(Of Fahrzeug, Fahrzeug)()
 
-        'Initialisierung einer Variablen zur Angabe der Durchläufe
-        Dim anzahlFahrzeuge As Integer = 10000
+        ''Initialisierung einer Variablen zur Angabe der Durchläufe
+        'Dim anzahlFahrzeuge As Integer = 10000
 
-        'Zufällige "Befüllung" der Listen mittels des Zufallszahlengenerators und SelectCase
-        For index = 1 To anzahlFahrzeuge
-            Select Case generator.Next(1, 4)
-                Case 1
-                    fzStack.Push(PKW.ErstelleZufälligenPKW($"_S{index}"))
-                    fzQueue.Enqueue(PKW.ErstelleZufälligenPKW($"_Q{index}"))
-                Case 2
-                    fzStack.Push(New Schiff($"Titanic_S{index}", 50, 3000000, Schiff.Schiffstreibstoff.Dampf))
-                    fzQueue.Enqueue(New Schiff($"Titanic_Q{index}", 50, 3000000, Schiff.Schiffstreibstoff.Dampf))
-                Case 3
-                    fzStack.Push(New Flugzeug($"Boing_S{index}", 800, 2900000, 9900))
-                    fzQueue.Enqueue(New Flugzeug($"Boing_Q{index}", 800, 2900000, 9900))
-            End Select
-        Next
+        ''Zufällige "Befüllung" der Listen mittels des Zufallszahlengenerators und SelectCase
+        'For index = 1 To anzahlFahrzeuge
+        '    Select Case generator.Next(1, 4)
+        '        Case 1
+        '            fzStack.Push(PKW.ErstelleZufälligenPKW($"_S{index}"))
+        '            fzQueue.Enqueue(PKW.ErstelleZufälligenPKW($"_Q{index}"))
+        '        Case 2
+        '            fzStack.Push(New Schiff($"Titanic_S{index}", 50, 3000000, Schiff.Schiffstreibstoff.Dampf))
+        '            fzQueue.Enqueue(New Schiff($"Titanic_Q{index}", 50, 3000000, Schiff.Schiffstreibstoff.Dampf))
+        '        Case 3
+        '            fzStack.Push(New Flugzeug($"Boing_S{index}", 800, 2900000, 9900))
+        '            fzQueue.Enqueue(New Flugzeug($"Boing_Q{index}", 800, 2900000, 9900))
+        '    End Select
+        'Next
 
-        'Versuch, die QueueFz's mit den StackFz's zu beladen
-        For index = 1 To anzahlFahrzeuge
-            'Prüfung auf das Interface (ob beladen werden kann)
-            If TypeOf fzQueue.Peek() Is IBeladbar Then
-                'wenn ja, dann Cast ins Interface 
-                Dim beladbaresFz As IBeladbar = DirectCast(fzQueue.Peek(), IBeladbar)
-                'und Aufruf der Belade()-Funktion (mittels Peek(), da die Fz's noch benötigt werden)
-                beladbaresFz.Belade(fzStack.Peek())
-                'Hinzufügen der Fz's zum Dictionary (mittels Dequeue()/Pop(), damit beim nächsten Durchlauf andere Fz's oben sind)
-                fzDict.Add(fzQueue.Dequeue(), fzStack.Pop())
-            Else
-                'wenn nein, dann werden die Fz's vor dem nächsten Durchlauf rausgeschmissen
-                fzQueue.Dequeue()
-                fzStack.Pop()
-            End If
-        Next
+        ''Versuch, die QueueFz's mit den StackFz's zu beladen
+        'For index = 1 To anzahlFahrzeuge
+        '    'Prüfung auf das Interface (ob beladen werden kann)
+        '    If TypeOf fzQueue.Peek() Is IBeladbar Then
+        '        'wenn ja, dann Cast ins Interface 
+        '        Dim beladbaresFz As IBeladbar = DirectCast(fzQueue.Peek(), IBeladbar)
+        '        'und Aufruf der Belade()-Funktion (mittels Peek(), da die Fz's noch benötigt werden)
+        '        beladbaresFz.Belade(fzStack.Peek())
+        '        'Hinzufügen der Fz's zum Dictionary (mittels Dequeue()/Pop(), damit beim nächsten Durchlauf andere Fz's oben sind)
+        '        fzDict.Add(fzQueue.Dequeue(), fzStack.Pop())
+        '    Else
+        '        'wenn nein, dann werden die Fz's vor dem nächsten Durchlauf rausgeschmissen
+        '        fzQueue.Dequeue()
+        '        fzStack.Pop()
+        '    End If
+        'Next
 
-        'Programmpause
-        Console.ReadKey()
-        Console.WriteLine("-----LADELISTE----")
+        ''Programmpause
+        'Console.ReadKey()
+        'Console.WriteLine("-----LADELISTE----")
 
-        'Ausgabe des Dictionaries
-        For Each item In fzDict
-            Console.WriteLine($"{item.Key.Name} hat {item.Value.Name} geladen.")
-        Next
+        ''Ausgabe des Dictionaries
+        'For Each item In fzDict
+        '    Console.WriteLine($"{item.Key.Name} hat {item.Value.Name} geladen.")
+        'Next
 #End Region
+
+        'Bsp-PKWs
+        Dim fz1 = New PKW("BMW", 230, 12345, 4)
+        Dim fz2 = New PKW("BMW", 345, 23455, 2)
+        Dim fz3 = New PKW("Mercedes", 345, 23455, 2)
+
+        'Anwendung des in der PKW-Klasse definierten Vergelichsoperators
+        Console.WriteLine(fz1 = fz2)
+        Console.WriteLine(fz2 = fz3)
+
+        Dim flugzeug1 = New Flugzeug("Boing", 40000000, 30000, 9999)
+
+        'Anwendung der GetEnumerator-Funktion aus der Flugzeugklasse
+        For Each passagier In flugzeug1
+            Console.WriteLine(passagier)
+        Next
+
+        'Anwendung der Indexer-Property aus der Flugzeugklasse
+        Console.WriteLine(flugzeug1(1))
 
         Console.ReadKey()
     End Sub
